@@ -186,16 +186,16 @@ linea_muerte <- function(pmes){
   
   #grabo todas las probabilidad, simplemente para tenerlo
   fwrite( prediccion_final[ order( -prob_positivo) ],
-          file= paste( "ldm_prob_", pred, ".txt", sep="" ),
+          file= paste( "ldm_prob_", env$experimento,"_mes",pred, ".txt", sep="" ),
           sep="\t",
           eol = "\r\n")
   
   #grabo la importancia de las variables
-  #write.table(  xgb.importance( model = modelo ),
-  #              file=paste( "ldm_importancia_", pred, ".txt", sep="" ),
-  #              sep="\t",
-  #              eol = "\r\n"
-  #)
+  write.table(  lgb.importance( model = modelo ),
+                file=paste( "ldm_importancia_",env$experimento,"_mes", pred, ".txt", sep="" ),
+                sep="\t",
+                eol = "\r\n"
+  )
 }
 
 
